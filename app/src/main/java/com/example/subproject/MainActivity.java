@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.subproject.CRUD_Realtime.AddTaskActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogOut.setOnClickListener(view ->{
             mAuth.signOut();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            startActivity(new Intent(MainActivity.this, AddTaskActivity.class));
         });
     }
 

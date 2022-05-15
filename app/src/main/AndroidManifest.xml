@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubProject">
         <activity
-            android:name=".DatePickerActivity"
+            android:name=".CRUD_Realtime.RVActivity"
             android:exported="false" />
         <activity
-            android:name=".AddTaskActivity"
+            android:name=".CRUD_Realtime.AddTaskActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

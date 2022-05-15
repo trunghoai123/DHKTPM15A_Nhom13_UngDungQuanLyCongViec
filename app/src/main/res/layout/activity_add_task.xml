@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     android:background="#FC880C"
     android:orientation="vertical"
-    tools:context=".AddTaskActivity">
+    tools:context=".CRUD_Realtime.AddTaskActivity">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etTaskTitle"
+    <EditText
+        android:id="@+id/edit_name"
         android:layout_width="344dp"
         android:layout_height="68dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/edit_text_border"
-        android:hint="Task Title"
+        android:hint="Task Title "
         android:inputType="textEmailAddress"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="8dp"
         android:text="Task Title"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/etTaskTitle"
+        app:layout_constraintBottom_toTopOf="@+id/edit_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent" />
@@ -43,7 +43,7 @@
         android:layout_marginBottom="8dp"
         android:text="Task Content"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtContent"
+        app:layout_constraintBottom_toTopOf="@+id/edit_position"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,10 +64,10 @@
 
         />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAddTask"
+    <Button
+        android:id="@+id/btn_submit"
         android:layout_width="271dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="44dp"
         android:background="@drawable/button_border_corner"
         android:text="Add Task"
@@ -85,7 +85,7 @@
         android:translationZ="-1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/screen_background_light" />
 
@@ -102,51 +102,65 @@
         app:srcCompat="@drawable/add_task_resized" />
 
     <EditText
-        android:id="@+id/edtContent"
+        android:id="@+id/edit_position"
         android:layout_width="347dp"
         android:layout_height="99dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Task Content"
+        android:hint="Task Content "
         android:inputType="textMultiLine"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
 
         android:paddingEnd="10dp"
         android:paddingRight="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/edtDate"
+        app:layout_constraintBottom_toTopOf="@+id/edit_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/edtDate"
-        android:layout_width="218dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="48dp"
+        android:id="@+id/edit_date"
+        android:layout_width="186dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:hint="Enter Date"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddTask"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_submit"
+        app:layout_constraintEnd_toStartOf="@+id/edit_time"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_position" />
 
     <EditText
-        android:id="@+id/editText1"
-        android:layout_width="116dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="48dp"
+        android:id="@+id/edit_time"
+        android:layout_width="128dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/edit_text_border"
         android:ems="10"
         android:hint="Enter Time"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddTask"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.894"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_submit"
+        app:layout_constraintEnd_toEndOf="@+id/edit_position"
+        app:layout_constraintTop_toTopOf="@+id/edit_date"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btn_open"
+        android:layout_width="268dp"
+        android:layout_height="50dp"
+        android:text="Open List"
+        android:textSize="18sp"
+        app:backgroundTint="#FC880C"
+        app:layout_constraintEnd_toEndOf="@+id/btn_submit"
+        app:layout_constraintStart_toStartOf="@+id/btn_submit"
+        app:layout_constraintTop_toBottomOf="@+id/btn_submit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
