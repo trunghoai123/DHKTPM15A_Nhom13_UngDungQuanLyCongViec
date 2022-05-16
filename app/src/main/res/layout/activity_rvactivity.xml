@@ -8,12 +8,12 @@
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swip"
-            android:layout_width="413dp"
-            android:layout_height="573dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="415dp"
+            android:layout_height="522dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12">
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv"
                     android:layout_width="match_parent"
@@ -60,24 +60,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnSearch"
-            android:layout_width="99dp"
-            android:layout_height="58dp"
-            android:backgroundTint="#FC880C"
-            android:text="search"
-            app:layout_constraintBottom_toBottomOf="@+id/edtSearch"
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="87dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="52dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edtSearch" />
+            app:layout_constraintHorizontal_bias="0.212"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/arrow_vector" />
 
         <Button
-            android:id="@+id/button7"
-            android:layout_width="428dp"
-            android:layout_height="2dp"
+            android:id="@+id/button8"
+            android:layout_width="99dp"
+            android:layout_height="58dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#FC880C"
+            android:text="search"
+            app:layout_constraintBottom_toTopOf="@+id/swip"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.529"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="208dp" />
+            app:layout_constraintHorizontal_bias="0.964"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/imgLogout"
@@ -90,17 +94,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logout_red_remove_back" />
 
-        <EditText
-            android:id="@+id/edtSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
+        <SearchView
+            android:queryHint="Search"
+            android:id="@+id/searchView"
+            android:layout_width="282dp"
+            android:layout_height="59dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/swip"
-            app:layout_constraintEnd_toStartOf="@+id/btnSearch"
-            app:layout_constraintHorizontal_bias="0.156"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

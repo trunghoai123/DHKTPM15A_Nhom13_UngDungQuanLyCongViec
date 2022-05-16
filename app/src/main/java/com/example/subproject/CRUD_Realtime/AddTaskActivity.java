@@ -36,7 +36,6 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         final EditText edit_name = findViewById(R.id.edit_name);
-        
         final EditText edit_position = findViewById(R.id.edit_position);
         final EditText edit_date = findViewById(R.id.edit_date);
         final EditText edit_time = findViewById(R.id.edit_time);
@@ -130,6 +129,7 @@ public class AddTaskActivity extends AppCompatActivity {
                         Toast.makeText(this, "Add successfully", Toast.LENGTH_SHORT).show();
 //                        Intent intent =new Intent(AddTaskActivity.this, RVActivity.class);
 //                        startActivity(intent);
+
                         finish();
 
                     }).addOnFailureListener(er ->
@@ -147,8 +147,8 @@ public class AddTaskActivity extends AppCompatActivity {
                     dao.update(emp_edit.getKey(), hashMap).addOnSuccessListener(suc ->
                     {
                         Toast.makeText(this, "Update successfully", Toast.LENGTH_SHORT).show();
-                        /*Intent intent = new Intent(AddTaskActivity.this, RVActivity.class);
-                        startActivity(intent);*/
+                        Intent intent = new Intent(AddTaskActivity.this, RVActivity.class);
+                        startActivity(intent);
                         finish();
                     }).addOnFailureListener(er ->
                     {
@@ -157,6 +157,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
+
+    }
 }

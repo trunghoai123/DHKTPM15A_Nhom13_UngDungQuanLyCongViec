@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subproject.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
@@ -23,11 +24,14 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     {
         this.context = ctx;
     }
+    public RVAdapter(ArrayList<CongViec> list)
+    {
+        this.list = list;
+    }
     public void setItems(ArrayList<CongViec> emp)
     {
         list.addAll(emp);
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -39,7 +43,12 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
     {
         CongViec e = null;
-        this.onBindViewHolder(holder,position,e);
+        this.onBindViewHolder(holder,position, e);
+    }
+
+    public ArrayList<CongViec> getListItem( )
+    {
+        return list;
     }
 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, CongViec e)
@@ -67,14 +76,14 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                         DAOEmployee dao=new DAOEmployee();
                         dao.remove(emp.getKey()).addOnSuccessListener(suc->
                         {
-                            Toast.makeText(context, "Remove thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Remove successfully", Toast.LENGTH_SHORT).show();
                             notifyItemRemoved(position);
                             list.remove(emp);
+
                         }).addOnFailureListener(er->
                         {
                             Toast.makeText(context, ""+er.getMessage(), Toast.LENGTH_SHORT).show();
                         });
-
                         break;
                 }
                 return false;
