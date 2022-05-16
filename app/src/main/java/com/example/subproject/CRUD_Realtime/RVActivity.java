@@ -63,6 +63,7 @@ public class RVActivity extends AppCompatActivity {
         imgAvatar = findViewById(R.id.imgAvatar);
         imgLogout = findViewById(R.id.imgLogout);
         edtSearch = findViewById(R.id.edtSearch);
+        btnSearch = findViewById(R.id.btnSearch);
         recyclerView.setHasFixedSize(true);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -115,18 +116,17 @@ public class RVActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(edtSearch.getText().length()>0){
-                    loadDataSearch();
+                        loadDataSearch();
                 }
             }
         });
 
-
     }
+
     private void loadDataSearch()
     {
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference cvRef = rootRef.child("CongViec");
-        ValueEventListener valueEventListener = new ValueEventListener()
+        swipeRefreshLayout.setRefreshing(true);
+        dao.get(key).addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
@@ -134,15 +134,13 @@ public class RVActivity extends AppCompatActivity {
                 ArrayList<CongViec> emps = new ArrayList<>();
                 for (DataSnapshot data : snapshot.getChildren())
                 {
-
                     CongViec emp = data.getValue(CongViec.class);
-                    emp.setKey(data.getKey());
-                    if(emp.getTitle().contains(edtSearch.getText().toString())) {
+                    if(emp.getTitle().toString().contains(edtSearch.getText().toString())){
+                        emp.setKey(data.getKey());
                         emps.add(emp);
                         key = data.getKey();
                     }
                 }
-
                 adapter.setItems(emps);
                 adapter.notifyDataSetChanged();
                 isLoading =false;
@@ -154,8 +152,7 @@ public class RVActivity extends AppCompatActivity {
             {
                 swipeRefreshLayout.setRefreshing(false);
             }
-        };
-        cvRef.addListenerForSingleValueEvent(valueEventListener);
+        });
     }
     private void loadData()
     {
