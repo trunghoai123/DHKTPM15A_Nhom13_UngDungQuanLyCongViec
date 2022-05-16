@@ -7,9 +7,9 @@ import com.google.firebase.database.Query;
 
 import java.util.HashMap;
 
-public class DAOEmployee {
+public class DAOCongViec {
     private DatabaseReference databaseReference;
-    public DAOEmployee()
+    public DAOCongViec()
     {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         databaseReference = db.getReference(CongViec.class.getSimpleName());

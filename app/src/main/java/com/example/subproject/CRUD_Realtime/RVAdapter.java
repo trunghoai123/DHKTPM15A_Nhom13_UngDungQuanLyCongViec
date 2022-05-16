@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subproject.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
@@ -85,7 +84,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                         context.startActivity(intent);
                         break;
                     case R.id.menu_remove:
-                        DAOEmployee dao=new DAOEmployee();
+                        DAOCongViec dao=new DAOCongViec();
                         dao.remove(emp.getKey()).addOnSuccessListener(suc->
                         {
                             Toast.makeText(context, "Remove successfully", Toast.LENGTH_SHORT).show();
