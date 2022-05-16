@@ -71,18 +71,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/arrow_vector" />
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="99dp"
-            android:layout_height="58dp"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="#FC880C"
-            android:text="search"
-            app:layout_constraintBottom_toTopOf="@+id/swip"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.964"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <ImageView
             android:id="@+id/imgLogout"
             android:layout_width="51dp"
@@ -95,14 +83,16 @@
             app:srcCompat="@drawable/logout_red_remove_back" />
 
         <SearchView
-            android:queryHint="Search"
             android:id="@+id/searchView"
-            android:layout_width="282dp"
-            android:layout_height="59dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="371dp"
+            android:layout_height="57dp"
+            android:layout_marginBottom="16dp"
+            android:queryHint="Search"
             app:layout_constraintBottom_toTopOf="@+id/swip"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.046"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/edit_text_border"
+            />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

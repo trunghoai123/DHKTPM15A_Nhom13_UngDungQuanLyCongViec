@@ -127,8 +127,8 @@ public class AddTaskActivity extends AppCompatActivity {
                     dao.add(emp).addOnSuccessListener(suc ->
                     {
                         Toast.makeText(this, "Add successfully", Toast.LENGTH_SHORT).show();
-//                        Intent intent =new Intent(AddTaskActivity.this, RVActivity.class);
-//                        startActivity(intent);
+                        Intent intent =new Intent(AddTaskActivity.this, RVActivity.class);
+                        startActivity(intent);
 
                         finish();
 

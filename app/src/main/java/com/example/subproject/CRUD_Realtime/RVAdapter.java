@@ -32,6 +32,10 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     {
         list.addAll(emp);
     }
+    public void setNewItems(ArrayList<CongViec> emp)
+    {
+        list = emp;
+    }
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -44,6 +48,14 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     {
         CongViec e = null;
         this.onBindViewHolder(holder,position, e);
+    }
+    public boolean removeAllItems(){
+        int count = list.size();
+        for(int i = 0; i < count; i++){
+            list.remove(0);
+        }
+//        list = new ArrayList<>();
+        return true;
     }
 
     public ArrayList<CongViec> getListItem( )

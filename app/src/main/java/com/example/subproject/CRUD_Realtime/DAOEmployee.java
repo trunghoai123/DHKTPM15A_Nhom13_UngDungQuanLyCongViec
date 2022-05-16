@@ -11,7 +11,7 @@ public class DAOEmployee {
     private DatabaseReference databaseReference;
     public DAOEmployee()
     {
-        FirebaseDatabase db =FirebaseDatabase.getInstance();
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
         databaseReference = db.getReference(CongViec.class.getSimpleName());
     }
     public Task<Void> add(CongViec emp)
@@ -30,11 +30,15 @@ public class DAOEmployee {
 
     public Query get(String key)
     {
-        if(key == null)
-        {
-            return databaseReference.orderByKey().limitToFirst(8);
-        }
-        return databaseReference.orderByKey().startAfter(key).limitToFirst(8);
+//        if(key == null)
+//        {
+            return databaseReference.orderByKey().limitToFirst(100);
+//        }
+//        else
+//        if(key.equals("all")){
+//            return databaseReference.orderByKey();
+//        }
+//        return databaseReference.orderByKey().startAfter(key).limitToFirst(100);
     }
 
     public Query get()

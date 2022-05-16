@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.subproject.ImagePickerActivity;
+import com.example.subproject.LoginActivity;
 import com.example.subproject.MainActivity;
 import com.example.subproject.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -54,13 +56,11 @@ public class RVActivity extends AppCompatActivity {
     ImageView imgLogout;
     FirebaseAuth mAuth;
     DataSnapshot dataSnapshot;
-    boolean flag;
-//    ArrayList<CongViec> emps;
+    boolean press;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rvactivity);
-        ref = FirebaseDatabase.getInstance().getReference().child("CongViec");
         searchView = findViewById(R.id.searchView);
         ImageView btn_show = findViewById(R.id.btn_show);
         txt_option = findViewById(R.id.txt_option);
@@ -73,11 +73,11 @@ public class RVActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         adapter= new RVAdapter(this);
-        adapter_view = new RVAdapter(this);
+//        adapter_view = new RVAdapter(this);
         recyclerView.setAdapter(adapter);
         dao = new DAOEmployee();
-        loadData();
-        flag = false;
+        loadData("");
+        press = false;
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
             @Override
@@ -91,8 +91,8 @@ public class RVActivity extends AppCompatActivity {
                     if(!isLoading)
                     {
                         isLoading = true;
-//                        String str = searchView.getQuery().toString();
-                        loadData();
+                        String str = searchView.getQuery().toString();
+                        loadData(str);
                     }
                 }
             }
@@ -115,22 +115,24 @@ public class RVActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
+                startActivity(new Intent(RVActivity.this, LoginActivity.class));
                 finish();
             }
         });
-//        if(searchView != null){
-//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String s) {
-//                    return false;
-//                }
-//                @Override
-//                public boolean onQueryTextChange(String s) {
-//                    loadDataSearch(s);
-//                    return true;
-//                }
-//            });
-//        }
+        if(searchView != null){
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    press = true;
+                    loadData(s);
+                    return true;
+                }
+            });
+        }
 
     }
 
@@ -164,34 +166,110 @@ public class RVActivity extends AppCompatActivity {
 //      }
 //    }
 
-    private void loadData()
-    {
-        swipeRefreshLayout.setRefreshing(true);
-        dao.get(key).addListenerForSingleValueEvent(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                ArrayList<CongViec> emps = new ArrayList<>();
-                for (DataSnapshot data : snapshot.getChildren())
-                {
-                    CongViec emp = data.getValue(CongViec.class);
-                    emp.setKey(data.getKey());
-                    emps.add(emp);
-                    key = data.getKey();
-                }
-                adapter.setItems(emps);
-//                adapter_view.setItems(adapter.getListItem());
-                adapter.notifyDataSetChanged();
-                isLoading = false;
-                swipeRefreshLayout.setRefreshing(false);
-            }
+//    private void loadDataSearch(String str)
+//    {
+//        swipeRefreshLayout.setRefreshing(true);
+//        dao.get(key).addListenerForSingleValueEvent(new ValueEventListener()
+//        {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot)
+//            {
+//                ArrayList<CongViec> emps = new ArrayList<>();
+//                for (DataSnapshot data : snapshot.getChildren())
+//                {
+//                    CongViec emp = data.getValue(CongViec.class);
+//                    if(emp.getTitle().toLowerCase().contains(str.toLowerCase())){
+//                        emp.setKey(data.getKey());
+//                        emps.add(emp);
+//                    }
+////                    key = data.getKey();
+//                }
+//                adapter.removeAllItems();
+//                adapter.setItems(emps);
+////                System.out.println(emps);
+////                adapter_view.setItems(adapter.getListItem());
+//                adapter.notifyDataSetChanged();
+//                isLoading = false;
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error)
+//            {
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//        });
+//    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
+    private void loadData(String str)
+    {
+//        if(press){
+//            key = null;
+//            press = false;
+//        }
+        swipeRefreshLayout.setRefreshing(true);
+        if(str.trim().equals("")){
+            dao.get(key).addListenerForSingleValueEvent(new ValueEventListener()
             {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot)
+                {
+                    ArrayList<CongViec> emps = new ArrayList<>();
+                    for (DataSnapshot data : snapshot.getChildren())
+                    {
+                        CongViec emp = data.getValue(CongViec.class);
+                        emp.setKey(data.getKey());
+                        emps.add(emp);
+//                        key = data.getKey();
+                    }
+                    if(key == null){
+                        adapter.removeAllItems();
+                    }
+                    System.out.println(emps.size());
+                    adapter.setItems(emps);
+//                System.out.println(emps);
+                    adapter.notifyDataSetChanged();
+                    isLoading = false;
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error)
+                {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
+        else{
+            key = null;
+            dao.get("all").addListenerForSingleValueEvent(new ValueEventListener()
+            {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot)
+                {
+                    ArrayList<CongViec> emps = new ArrayList<>();
+                    for (DataSnapshot data : snapshot.getChildren())
+                    {
+                        CongViec emp = data.getValue(CongViec.class);
+                        if(emp.getTitle().toLowerCase().contains(str.toLowerCase())){
+                            emp.setKey(data.getKey());
+                            emps.add(emp);
+                        }
+                    }
+                    adapter.removeAllItems();
+                    adapter.setItems(emps);
+//                System.out.println(emps);
+                    adapter.notifyDataSetChanged();
+                    isLoading = false;
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error)
+                {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
     }
 }
