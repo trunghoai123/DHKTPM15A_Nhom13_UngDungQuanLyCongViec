@@ -1,19 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CRUD_Realtime.RVActivity">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swip"
+            android:layout_width="415dp"
+            android:layout_height="522dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/avt_1" />
+
+        <ImageView
+            android:id="@+id/btn_show"
+            android:layout_width="54dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.978"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/group_8" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="200dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Task Manager"
+            android:textColor="#FC880C"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.369"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="87dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.212"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/arrow_vector" />
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="99dp"
+            android:layout_height="58dp"
+            android:backgroundTint="#FC880C"
+            android:text="search"
+            app:layout_constraintBottom_toBottomOf="@+id/edtSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edtSearch" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="428dp"
+            android:layout_height="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="208dp" />
+
+        <ImageView
+            android:id="@+id/imgLogout"
+            android:layout_width="51dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_show"
+            app:layout_constraintHorizontal_bias="0.588"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logout_red_remove_back" />
+
+        <EditText
+            android:id="@+id/edtSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/swip"
+            app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12"
+            app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

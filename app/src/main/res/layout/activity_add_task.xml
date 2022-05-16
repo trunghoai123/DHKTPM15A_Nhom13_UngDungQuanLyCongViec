@@ -66,15 +66,16 @@
 
     <Button
         android:id="@+id/btn_submit"
-        android:layout_width="271dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="346dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/button_border_corner"
         android:text="Add Task"
         android:textSize="18sp"
         app:backgroundTint="#FC880C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -150,17 +151,6 @@
         app:layout_constraintEnd_toEndOf="@+id/edit_position"
         app:layout_constraintTop_toTopOf="@+id/edit_date"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btn_open"
-        android:layout_width="268dp"
-        android:layout_height="50dp"
-        android:text="Open List"
-        android:textSize="18sp"
-        app:backgroundTint="#FC880C"
-        app:layout_constraintEnd_toEndOf="@+id/btn_submit"
-        app:layout_constraintStart_toStartOf="@+id/btn_submit"
-        app:layout_constraintTop_toBottomOf="@+id/btn_submit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

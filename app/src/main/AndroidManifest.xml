@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubProject">
         <activity
+            android:name=".ImagePickerActivity"
+            android:exported="false" />
+        <activity
             android:name=".CRUD_Realtime.RVActivity"
             android:exported="false" />
         <activity

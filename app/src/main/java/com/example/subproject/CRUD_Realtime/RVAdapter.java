@@ -33,7 +33,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_item,parent,false);
-        return new EmployeeVH(view);
+        return new CongViecVH(view);
     }
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
@@ -44,15 +44,15 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, CongViec e)
     {
-        EmployeeVH vh = (EmployeeVH) holder;
-        CongViec emp = e==null? list.get(position):e;
+        CongViecVH vh = (CongViecVH) holder;
+        CongViec emp = e == null ? list.get(position) : e;
         vh.txt_name.setText(emp.getTitle());
         vh.txt_position.setText(emp.getContent());
         vh.txt_date.setText(emp.getDate());
         vh.txt_time.setText(emp.getTime());
         vh.txt_option.setOnClickListener(v->
         {
-            PopupMenu popupMenu =new PopupMenu(context,vh.txt_option);
+            PopupMenu popupMenu = new PopupMenu(context,vh.txt_option);
             popupMenu.inflate(R.menu.option_menu);
             popupMenu.setOnMenuItemClickListener(item->
             {
@@ -88,4 +88,6 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     {
         return list.size();
     }
+
+
 }
