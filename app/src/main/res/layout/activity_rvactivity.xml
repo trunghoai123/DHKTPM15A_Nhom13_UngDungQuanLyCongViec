@@ -8,18 +8,18 @@
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swip"
-            android:layout_width="415dp"
-            android:layout_height="522dp"
-            android:layout_marginTop="80dp"
+            android:layout_width="411dp"
+            android:layout_height="512dp"
+            android:layout_marginTop="88dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView12">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
-                    />
+                    android:layout_height="match_parent" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ImageView
