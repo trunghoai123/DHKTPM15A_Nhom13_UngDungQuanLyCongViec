@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImagePickerActivity">
+
+    <ImageView
+        android:id="@+id/imvAvatar"
+        android:layout_width="419dp"
+        android:layout_height="262dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/edit_text_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnSelectImage"
+        android:layout_width="244dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#FC880C"
+        android:capitalize="none"
+        android:text="Select Image"
+        app:layout_constraintEnd_toEndOf="@+id/imvAvatar"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="@+id/imvAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/imvAvatar" />
+
+    <Button
+        android:id="@+id/btnUploadImage"
+        android:layout_width="132dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="#FC880C"
+        android:text="Upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="132dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="#FC880C"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="230dp"
+        android:layout_height="254dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSelectImage"
+        app:srcCompat="@drawable/work_together_resized" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
