@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
         else{
-//            startActivity(new Intent(MainActivity.this, GetImageActivity.class));
+
             startActivity(new Intent(MainActivity.this, RVActivity.class));
         }
     }

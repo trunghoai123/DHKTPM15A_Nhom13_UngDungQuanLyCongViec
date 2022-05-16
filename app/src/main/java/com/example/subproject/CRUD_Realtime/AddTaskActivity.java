@@ -16,7 +16,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.subproject.R;
-import com.google.firebase.installations.Utils;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -83,7 +82,7 @@ public class AddTaskActivity extends AppCompatActivity {
         });
 
 
-        DAOEmployee dao = new DAOEmployee();
+        DAOCongViec dao = new DAOCongViec();
         CongViec emp_edit = (CongViec)getIntent().getSerializableExtra("EDIT");
         if(emp_edit != null)
         {
