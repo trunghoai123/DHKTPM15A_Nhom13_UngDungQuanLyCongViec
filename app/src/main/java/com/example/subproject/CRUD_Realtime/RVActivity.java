@@ -8,6 +8,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import android.view.View;
@@ -20,32 +22,46 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.subproject.GetImageActivity;
 import com.example.subproject.ImagePickerActivity;
 import com.example.subproject.LoginActivity;
 import com.example.subproject.MainActivity;
 import com.example.subproject.R;
+import com.example.subproject.databinding.ActivityGetImageBinding;
+import com.example.subproject.databinding.ActivityRvactivityBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class RVActivity extends AppCompatActivity {
-//    search
+    ActivityRvactivityBinding binding;
+    StorageReference storageReference;
+    String email;
+    FirebaseUser user;
+    FirebaseAuth mAuth;
+    //    search
     DatabaseReference ref;
-//    ArrayList<CongViec> listCV;
-//    RecyclerView recyclerViewSearch;
     SearchView searchView;
 
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     RVAdapter adapter;
-    RVAdapter adapter_view;
     DAOEmployee dao;
     boolean isLoading = false;
     String key = null;
@@ -54,13 +70,17 @@ public class RVActivity extends AppCompatActivity {
     TextView txt_option;
     private Context context;
     ImageView imgLogout;
-    FirebaseAuth mAuth;
-    DataSnapshot dataSnapshot;
+
     boolean press;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rvactivity);
+
+        binding = ActivityRvactivityBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+//        setContentView(R.layout.activity_rvactivity);
         searchView = findViewById(R.id.searchView);
         ImageView btn_show = findViewById(R.id.btn_show);
         txt_option = findViewById(R.id.txt_option);
@@ -69,7 +89,7 @@ public class RVActivity extends AppCompatActivity {
         imgAvatar = findViewById(R.id.imgAvatar);
         imgLogout = findViewById(R.id.imgLogout);
         recyclerView.setHasFixedSize(true);
-        mAuth = FirebaseAuth.getInstance();
+
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         adapter= new RVAdapter(this);
@@ -78,6 +98,11 @@ public class RVActivity extends AppCompatActivity {
         dao = new DAOEmployee();
         loadData("");
         press = false;
+        if (user != null) {
+            for (UserInfo profile : user.getProviderData()) {
+                email = profile.getEmail();
+            }
+        }
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
             @Override
@@ -132,6 +157,30 @@ public class RVActivity extends AppCompatActivity {
                     return true;
                 }
             });
+        }
+
+//        get avatar
+        String imageName = email;
+        storageReference = FirebaseStorage.getInstance().getReference(imageName);
+
+        try {
+            File localFile = File.createTempFile("tempFile", ".jpg");
+            storageReference.getFile(localFile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            binding.imgAvatar.setImageBitmap(bitmap);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RVActivity.this, "failed to retrive", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

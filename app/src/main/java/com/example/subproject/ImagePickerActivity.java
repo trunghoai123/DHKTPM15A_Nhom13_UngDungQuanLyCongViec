@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.subproject.CRUD_Realtime.RVActivity;
 import com.example.subproject.databinding.ActivityImagePickerBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -87,6 +88,7 @@ public class ImagePickerActivity extends AppCompatActivity {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
+                            startActivity(new Intent(ImagePickerActivity.this, RVActivity.class));
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubProject">
         <activity
+            android:name=".GetImageActivity"
+            android:exported="false" />
+        <activity
             android:name=".ImagePickerActivity"
             android:exported="false" />
         <activity
