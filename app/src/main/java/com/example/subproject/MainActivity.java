@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.subproject.CRUD_Realtime.AddTaskActivity;
+import com.example.subproject.CRUD_Realtime.RVActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogOut.setOnClickListener(view ->{
             mAuth.signOut();
-            startActivity(new Intent(MainActivity.this, AddTaskActivity.class));
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
         });
     }
 
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null){
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }
+        else{
+            startActivity(new Intent(MainActivity.this, RVActivity.class));
         }
     }
 }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subproject.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
@@ -23,36 +24,44 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     {
         this.context = ctx;
     }
+    public RVAdapter(ArrayList<CongViec> list)
+    {
+        this.list = list;
+    }
     public void setItems(ArrayList<CongViec> emp)
     {
         list.addAll(emp);
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_item,parent,false);
-        return new EmployeeVH(view);
+        return new CongViecVH(view);
     }
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
     {
         CongViec e = null;
-        this.onBindViewHolder(holder,position,e);
+        this.onBindViewHolder(holder,position, e);
+    }
+
+    public ArrayList<CongViec> getListItem( )
+    {
+        return list;
     }
 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, CongViec e)
     {
-        EmployeeVH vh = (EmployeeVH) holder;
-        CongViec emp = e==null? list.get(position):e;
+        CongViecVH vh = (CongViecVH) holder;
+        CongViec emp = e == null ? list.get(position) : e;
         vh.txt_name.setText(emp.getTitle());
         vh.txt_position.setText(emp.getContent());
         vh.txt_date.setText(emp.getDate());
         vh.txt_time.setText(emp.getTime());
         vh.txt_option.setOnClickListener(v->
         {
-            PopupMenu popupMenu =new PopupMenu(context,vh.txt_option);
+            PopupMenu popupMenu = new PopupMenu(context,vh.txt_option);
             popupMenu.inflate(R.menu.option_menu);
             popupMenu.setOnMenuItemClickListener(item->
             {
@@ -67,14 +76,14 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                         DAOEmployee dao=new DAOEmployee();
                         dao.remove(emp.getKey()).addOnSuccessListener(suc->
                         {
-                            Toast.makeText(context, "Remove thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Remove successfully", Toast.LENGTH_SHORT).show();
                             notifyItemRemoved(position);
                             list.remove(emp);
+
                         }).addOnFailureListener(er->
                         {
                             Toast.makeText(context, ""+er.getMessage(), Toast.LENGTH_SHORT).show();
                         });
-
                         break;
                 }
                 return false;

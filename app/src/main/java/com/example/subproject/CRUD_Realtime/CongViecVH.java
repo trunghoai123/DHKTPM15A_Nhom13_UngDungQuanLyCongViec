@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subproject.R;
 
-public class EmployeeVH extends RecyclerView.ViewHolder
+public class CongViecVH extends RecyclerView.ViewHolder
 {
     public TextView txt_name,txt_position,txt_option,txt_date,txt_time;
-    public EmployeeVH(@NonNull View itemView)
+    public CongViecVH(@NonNull View itemView)
     {
         super(itemView);
         txt_name = itemView.findViewById(R.id.txt_name);
